@@ -5,11 +5,13 @@
   "author": "Stuart Seguin <stuseguin@gmail.com>",
   "main": "index.js",
   "scripts": {
-    "start": "node lib/index.js",
+    "start": "npm run build && node lib/index.js",
     "build": "babel src -d lib"
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.7"
+    "@babel/core": "^7.16.7",
+    "@babel/runtime": "^7.16.7",
+    "axios": "^0.24.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.8",
@@ -17,9 +19,13 @@
     "@babel/preset-env": "^7.16.8"
   },
   "babel": {
-    "presets": ["@babel/preset-env"],
+    "presets": [
+      "@babel/preset-env"
+    ],
     "plugins": [
-      ["@babel/transform-runtime"]
+      [
+        "@babel/transform-runtime"
+      ]
     ]
   }
 }
