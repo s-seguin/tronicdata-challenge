@@ -1,5 +1,9 @@
 import Parser from "rss-parser";
 import {MongoClient} from "mongodb";
+import yargs from "yargs";
+import {hideBin} from "yargs/helpers";
+
+const argv = yargs(hideBin(process.argv)).argv;
 
 const main = async () => {
     const mongoConnString = "mongodb://localhost";
@@ -7,16 +11,15 @@ const main = async () => {
     const db = client.db("blogHeadlines");
     const collection = db.collection("articles");
 
-    // const source = "https://hnrss.org/frontpage";
-    const source = "https://feeds.feedburner.com/mrmoneymustache/.rss";
-    const limit = 3;
+    // assuming well formed cmd line args
+    const source = argv.source.includes("rss") ? argv.source : "https://feeds.feedburner.com/mrmoneymustache/.rss";
+    const limit = argv.limit ? parseFloat(argv.limit) : 3;
+
     const parser = new Parser();
-    // const feed = await parser.parseURL("https://feeds.feedburner.com/mrmoneymustache/.rss");
     const feed = await parser.parseURL(source);
 
     for (let i = 0; i < feed.items.length && i < limit; i++) {
         const {title, link, pubDate} = feed.items[i];
-        console.log(title, link, pubDate)
         await collection.updateOne({title}, {$set: {source, link, pubDate: new Date(pubDate).toISOString(), fetchedDate: new Date().toISOString()}}, {upsert: true});
     }
 
