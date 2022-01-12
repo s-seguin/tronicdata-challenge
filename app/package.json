@@ -1,0 +1,25 @@
+{
+  "name": "tronicdata-challenge",
+  "version": "1.0.0",
+  "description": "TronicData Challenge",
+  "author": "Stuart Seguin <stuseguin@gmail.com>",
+  "main": "index.js",
+  "scripts": {
+    "start": "node lib/index.js",
+    "build": "babel src -d lib"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.16.7"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/plugin-transform-runtime": "^7.16.8",
+    "@babel/preset-env": "^7.16.8"
+  },
+  "babel": {
+    "presets": ["@babel/preset-env"],
+    "plugins": [
+      ["@babel/transform-runtime"]
+    ]
+  }
+}

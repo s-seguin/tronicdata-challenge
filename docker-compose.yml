@@ -1,0 +1,9 @@
+version: "3"
+services:
+  database:
+    image: mongo
+    command: mongod --noauth
+    volumes:
+      - ./.mongo/data:/data/db
+    ports:
+      - "27017:27017"

@@ -1,0 +1,12 @@
+.DS_Store
+.env*
+.eslintcache
+.idea
+.vscode
+*.tgz
+.mongo
+.swp
+build
+dist
+lib
+node_modules

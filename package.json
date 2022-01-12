@@ -1,0 +1,11 @@
+{
+  "name": "tronicdata-challenge",
+  "version": "1.0.0",
+  "description": "TronicData Challenge",
+  "author": "Stuart Seguin <stuseguin@gmail.com>",
+  "dependencies": {},
+  "scripts": {
+    "up": "docker-compose -f docker-compose.yml up -d --build",
+    "down": "docker-compose -f docker-compose.yml down",
+  }
+}
